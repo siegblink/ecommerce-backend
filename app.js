@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
+// Import routes
+const userRoutes = require('./routes/user')
 
 // App
 const app = express()
@@ -17,9 +19,7 @@ mongoose
   })
 
 // Routes
-app.get('/', function(req, res) {
-  res.send('Hello from Node.js.')
-})
+app.use('/api', userRoutes)
 
 const port = process.env.PORT || 8000
 

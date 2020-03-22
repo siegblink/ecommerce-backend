@@ -1,5 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const morgan = require('morgan')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 require('dotenv').config()
 // Import routes
 const userRoutes = require('./routes/user')
@@ -17,6 +20,11 @@ mongoose
   .then(function() {
     console.log('Database connected.')
   })
+
+// Middlewares
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+app.use(cookieParser())
 
 // Routes
 app.use('/api', userRoutes)

@@ -51,6 +51,9 @@ userSchema
   })
 
 userSchema.methods = {
+  authenticate(plainText) {
+    return this.encryptPassword(plainText) === this.hashed_password
+  },
   encryptPassword(password) {
     if (!password) {
       return ''

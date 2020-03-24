@@ -5,7 +5,8 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 require('dotenv').config()
 // Import routes
-const userRoutes = require('./routes/auth')
+const authRoutes = require('./routes/auth')
+const userRoutes = require('./routes/user')
 
 // App
 const app = express()
@@ -27,6 +28,7 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 
 // Routes
+app.use('/api', authRoutes)
 app.use('/api', userRoutes)
 
 const port = process.env.PORT || 8000
